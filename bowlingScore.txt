@@ -1,0 +1,48 @@
+public static int[] bowlingScore(int[] ball) {
+	int[] scores = new int [10];
+	int frame = 0;
+	int sum = 0;
+	for (int i = 0; i < ball.length; i++)
+	{
+	    int score = ball[i];
+	    if (frame != 9)
+	    {
+    	    if (score == 10)
+    	    {
+    	        sum = sum + 10 + ball[i+1] + ball[i+2];
+    	        scores[frame] = sum;
+    	    }
+    	    else if (score + ball[i+1] == 10)
+    	    {
+    	        sum = sum + 10 + ball[i+2];
+    	        i++;
+    	        scores[frame] = sum;
+    	    }
+    	    else
+    	    {
+    	        sum = sum + score + ball[i+1];
+    	        i++;
+    	        scores[frame] = sum;
+    	    }
+    	    frame++;
+	    }
+	    else
+	    {
+	        if (score == 10)
+	        {
+	            sum = sum + 10 + ball[i+1] + ball[i+2];
+	        }
+	        else if (score + ball[i+1] == 10)
+	        {
+	            sum = sum + 10 + ball[i+2];
+	        }
+	        else
+	        {
+	            sum = sum + score + ball[i+1];
+	        }
+	        scores[9] = sum;
+	        break;
+	    }
+	}
+	return scores;
+}
